@@ -24,6 +24,8 @@ The goals / steps of this project are the following:
 [image7]: ./images/testdist.png "Distribution of test set"
 [image8]: ./images/traindist.png "Distribution of training set"
 [image9]: ./images/validdist.png "Distribution of validation set"
+[image10]: ./images/signoverview.png "Overview of traffic signs"
+
 
 ## Rubric Points
 ### Here I will consider the [rubric points](https://review.udacity.com/#!/rubrics/481/view) individually and describe how I addressed each point in my implementation.  
@@ -42,18 +44,24 @@ You're reading it! and here is a link to my [project code](https://github.com/ud
 I used the pandas library to calculate summary statistics of the traffic
 signs data set:
 
-* The size of training set is ?
-* The size of the validation set is ?
-* The size of test set is ?
-* The shape of a traffic sign image is ?
-* The number of unique classes/labels in the data set is ?
+* The size of training set is 65598. The size of the origin training data is 34799. I augmented the training set by applying a rotation and brightness change of the origin training data. 
+* The size of the validation set is 4410
+* The size of test set is  12630
+* The shape of a traffic sign image is (32, 32, 3)
+* The number of unique classes/labels in the data set is 43
 
 #### 2. Include an exploratory visualization of the dataset.
 
-Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
+Here is an exploratory visualization of the data set.
 
+First, we start with an overview of all signs in the following figure:
+![alt text][image10]
+
+Also i selected random images to gain more insight about the images.
 ![alt text][image6]
 
+From the exploration of the images the quality of the images varies strongly. There are good images, but also images with low brightness and/or sharpness. 
+The next step was to explore the distribution of the classes of each image set. In general, the classes in each data set seems to be similar distributed. 
 ![alt text][image8]
 
 ![alt text][image9]
