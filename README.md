@@ -19,7 +19,7 @@ The goals / steps of this project are the following:
 [image2]: ./images/accuracy.png "Accuracy"
 [image3]: ./images/gray.png "Gray Images"
 [image4]: ./images/new.png  "Traffic signs"
-[image5]: ./images/prob.png "TProbilities of new images"
+[image5]: ./images/prob.png "Probilities of new images"
 [image6]: ./images/signs.png "Random selection of traffic signs"
 [image7]: ./images/testdist.png "Distribution of test set"
 [image8]: ./images/traindist.png "Distribution of training set"
@@ -52,7 +52,13 @@ signs data set:
 
 Here is an exploratory visualization of the data set. It is a bar chart showing how the data ...
 
-![alt text][image1]
+![alt text][image6]
+
+![alt text][image8]
+
+![alt text][image9]
+
+![alt text][image7]
 
 ### Design and Test a Model Architecture
 
@@ -62,7 +68,7 @@ As a first step, I decided to convert the images to grayscale because ...
 
 Here is an example of a traffic sign image before and after grayscaling.
 
-![alt text][image2]
+![alt text][image3]
 
 As a last step, I normalized the image data because ...
 
@@ -72,7 +78,7 @@ To add more data to the the data set, I used the following techniques because ..
 
 Here is an example of an original image and an augmented image:
 
-![alt text][image3]
+![alt text][image1]
 
 The difference between the original data set and the augmented data set is the following ... 
 
@@ -125,8 +131,7 @@ If a well known architecture was chosen:
 
 Here are five German traffic signs that I found on the web:
 
-![alt text][image4] ![alt text][image5] ![alt text][image6] 
-![alt text][image7] ![alt text][image8]
+![alt text][image4] 
 
 The first image might be difficult to classify because ...
 
@@ -150,6 +155,8 @@ The model was able to correctly guess 4 of the 5 traffic signs, which gives an a
 The code for making predictions on my final model is located in the 11th cell of the Ipython notebook.
 
 For the first image, the model is relatively sure that this is a stop sign (probability of 0.6), and the image does contain a stop sign. The top five soft max probabilities were
+
+![alt text][image5] 
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
