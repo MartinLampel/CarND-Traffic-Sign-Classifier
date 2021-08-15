@@ -144,6 +144,14 @@ There may follow reasons for this fluctuation:
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
 
+
+As a starting point for the model architecture, I started with LeNet. 
+Since this model was developed for the recognition of handwritten letters, it works also for other images. The question was, which prediction accuracy can we achieve. The original LeNet model uses grayscale images. Our training set consists of color images. If we using in the input layer of the neural network a depth of 1 instead of 3, the training will be faster.
+
+Therefore, I decided to use the same input structure as in the original model architecture proposed. The output layer is modified to support the 43 sign classes. 
+
+The LeNet uses for the first two layers a convolutional layer.  I added a third convolutional layer, but there was not the expected improvement in the accuracy.  It seems two convolutional layers are sufficient for the correct recognition of traffic signs, which we will later see in the accuracy results. 
+
 My final model results were:
 * validation set accuracy of 0.957
 * test set accuracy of 0.935
