@@ -194,10 +194,10 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Right-of-way at the next intersection    			| Right-of-way at the next intersection 										|
-| No passing    		| No passing			 				|
 | Priority Road     		| Priority Road 									| 
+| Right-of-way at the next intersection    			| Right-of-way at the next intersection 										|
 | No vehicles		| No vehicles									|
+| No passing    		| No passing			 				|
 | General caution			| General caution     							|
 
 
