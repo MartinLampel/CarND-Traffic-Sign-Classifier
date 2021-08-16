@@ -139,7 +139,8 @@ During the training the validation accuracy fluctuating as we can see in this im
 There may follow reasons for this fluctuation:
 * learing rate to high: we take a too large step in the error landscape, with lower learning rates this improve but the training time increases a lot
 * Overfitting: To prevent overfitting a dropout was used, but it may be useful to use an other kind of regularization e.g. L2 to penalize large weights
-
+* Batch Size: After reading the article [Effect of batch size on training dynamics](https://medium.com/mini-distill/effect-of-batch-size-on-training-dynamics-21c14f7a716e) the model learn starts already learning before it has seen all data. Downside of this approach is that it bounces around the global optima. It seems 
+that this most likely the case.
 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
