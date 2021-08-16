@@ -25,6 +25,8 @@ The goals / steps of this project are the following:
 [image8]: ./images/traindist.png "Distribution of training set"
 [image9]: ./images/validdist.png "Distribution of validation set"
 [image10]: ./images/signoverview.png "Overview of traffic signs"
+[image11]: ./images/loss.png "loss"
+[image12]: ./images/accuracy2.png "training and validation accuracy"
 
 
 ## Rubric Points
@@ -128,19 +130,16 @@ My final model consisted of the following layers:
 
 #### 3. Describe how you trained your model. The discussion can include the type of optimizer, the batch size, number of epochs and any hyperparameters such as learning rate.
 
-To train the model the adam optimizer with a learning rate of 0.0008. I tried different learning rates in the range between 0.0005 and 0.001. This learning rate seems for this task the best option. With this learning rate a fast training is possible.
+To train the model the adam optimizer with a learning rate of 0.001. I tried different learning rates in the range between 0.0005 and 0.001. This learning rate seems for this task the best option. With this learning rate a fast training is possible.
 
-The batch size is set to 16. There are batch sizes in the range between 8 and 128 tested. One observation was that a smaller batch size increases the validation accuracy a lot. With the batch size of 16, we achieve a validation accuracy of 0.89 after the first epoch. A lower batch size results in a small improvement in accuracy, but the training for one epoch needs longer. Therefore, I used a batch size of 16.
+I tried epochs up to 100, the validation accuracy increases but not much. The number of epochs was fixed with 35 epochs.
 
-The number of epochs was fixed with 35 epochs. I tried epochs up to 100, the validation accuracy increases but not much. 
+The batch size is set to 16. There are batch sizes in the range between 8 and 128 tested. One observation was that a smaller batch size increases the validation accuracy a lot. With the batch size of 16, we achieve a validation accuracy of 0.89 after the first epoch. A lower batch size results in a small improvement in accuracy, but the training for one epoch needs longer. 
 During the training the validation accuracy fluctuating as we can see in this image:
+
 ![alt text][image2]
 
-There may follow reasons for this fluctuation:
-* learing rate to high: we take a too large step in the error landscape, with lower learning rates this improve but the training time increases a lot
-* Overfitting: To prevent overfitting a dropout was used, but it may be useful to use an other kind of regularization e.g. L2 to penalize large weights
-* Batch Size: After reading the article [Effect of batch size on training dynamics](https://medium.com/mini-distill/effect-of-batch-size-on-training-dynamics-21c14f7a716e) the model learn starts already learning before it has seen all data. Downside of this approach is that it bounces around the global optima. It seems 
-that this most likely the case.
+A explanation for this fluactations are covered in the next section.
 
 
 #### 4. Describe the approach taken for finding a solution and getting the validation set accuracy to be at least 0.93. Include in the discussion the results on the training, validation and test sets and where in the code these were calculated. Your approach may have been an iterative process, in which case, outline the steps you took to get to the final solution and why you chose those steps. Perhaps your solution involved an already well known implementation or architecture. In this case, discuss why you think the architecture is suitable for the current problem.
@@ -153,24 +152,31 @@ Therefore, I decided to use the same input structure as in the original model ar
 
 The LeNet uses for the first two layers a convolutional layer.  I added a third convolutional layer, but there was not the expected improvement in the accuracy.  It seems two convolutional layers are sufficient for the correct recognition of traffic signs, which we will later see in the accuracy results. 
 
+I added after each fully connected layer a dropout to prevent overfitting. The first keep probability was 0.5 and lead to a worse training progress of the validation accuracy. I tried a keep probability of 0.9. This value works a lot better in the training.
+
+Initially I started with a batch size of 16. This validation accuracy is not stable, it bounces at some bound around and improves slowly. 
+After reading the article [Effect of batch size on training dynamics](https://medium.com/mini-distill/effect-of-batch-size-on-training-dynamics-21c14f7a716e) the model learn starts already learning before it has seen all data. Downside of this approach is that it bounces around the global optima. It seems 
+that this most likely the case.
+
+I changed the training loop to support increasing batch sizes. The initial batch size is 8 and is doubled each 1000 training samples up to a batch size of 1024.
+This lead to a better stability of the validation accuracy as we can see in follow plot:
+
+![alt text][image12]
+
+The loss is recorded during the training to find the optimal number of epochs.
+
+![alt text][image11]
+
+The loss function decreases over time. At the last epochs there is not really a improvement. To prevent overfitting, we fixed number of epochs with 35.
+
+
 My final model results were:
-* validation set accuracy of 0.957
-* test set accuracy of 0.935
+* training set accuracy of 0.989
+* validation set accuracy of 0.942
+* test set accuracy of 0.922
 
-The model is changed to work with gra
 
-If an iterative approach was chosen:
-* What was the first architecture that was tried and why was it chosen?
-* What were some problems with the initial architecture?
-* How was the architecture adjusted and why was it adjusted? Typical adjustments could include choosing a different model architecture, adding or taking away layers (pooling, dropout, convolution, etc), using an activation function or changing the activation function. One common justification for adjusting an architecture would be due to overfitting or underfitting. A high accuracy on the training set but low accuracy on the validation set indicates over fitting; a low accuracy on both sets indicates under fitting.
-* Which parameters were tuned? How were they adjusted and why?
-* What are some of the important design choices and why were they chosen? For example, why might a convolution layer work well with this problem? How might a dropout layer help with creating a successful model?
 
-If a well known architecture was chosen:
-* What architecture was chosen?
-* Why did you believe it would be relevant to the traffic sign application?
-* How does the final model's accuracy on the training, validation and test set provide evidence that the model is working well?
- 
 
 ### Test a Model on New Images
 
@@ -188,11 +194,11 @@ Here are the results of the prediction:
 
 | Image			        |     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| Stop Sign      		| Stop sign   									| 
-| U-turn     			| U-turn 										|
-| Yield					| Yield											|
-| 100 km/h	      		| Bumpy Road					 				|
-| Slippery Road			| Slippery Road      							|
+| Right-of-way at the next intersection    			| Right-of-way at the next intersection 										|
+| No passing    		| No passing			 				|
+| Priority Road     		| Priority Road 									| 
+| No vehicles		| No vehicles									|
+| General caution			| General caution     							|
 
 
 The model was able to correctly guess 4 of the 5 traffic signs, which gives an accuracy of 80%. This compares favorably to the accuracy on the test set of ...
@@ -207,11 +213,11 @@ For the first image, the model is relatively sure that this is a stop sign (prob
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
-| .60         			| Stop sign   									| 
-| .20     				| U-turn 										|
-| .05					| Yield											|
-| .04	      			| Bumpy Road					 				|
-| .01				    | Slippery Road      							|
+| .60         			| Priority Road 	 									| 
+| .20     				| Right-of-way at the next intersection   										|
+| .05					| No vehicles										|
+| .04	      			| No passing			 				|
+| .01				    | General caution		  							|
 
 
 For the second image ... 
