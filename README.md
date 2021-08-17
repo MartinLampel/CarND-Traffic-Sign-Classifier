@@ -210,7 +210,7 @@ The code for making predictions on my final model is located in the 28th cell of
 
 ![alt text][image5] 
 
-As we can see in the plot with the probabilties for each image, the classifier give 4 of 5 images a probiltity of 1. The No passing sign achieved only a probability of 0.79%. The class with the second largest probability is the End of No passing sign, which makes sense since they are similiar.
+As we can see in the plot with the probabilties for each image, the classifier give 4 of 5 images a probability of 1. The No passing sign achieved only a probability of 0.79%. The class with the second largest probability is the End of No passing sign, which makes sense since they are similiar.
 
 | Probability         	|     Prediction	        					| 
 |:---------------------:|:---------------------------------------------:| 
