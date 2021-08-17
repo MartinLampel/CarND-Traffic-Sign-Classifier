@@ -78,26 +78,26 @@ The preprocessing of the images include follow steps:
 
 * Augmentation
 
-To generate from the training set new images, a rotation to each image is applied by a random angle. The brightness of the images is also changed by a random value. This generates 34799 images. Combined with the original training set we have a total of 65598 images for training. The code for this step can be found in the function `augment_image`.
-Here a few augmented images along with the original ones:
+  To generate from the training set new images, a rotation to each image is applied by a random angle. The brightness of the images is also changed by a random value.      This generates 34799 images. Combined with the original training set we have a total of 65598 images for training. The code for this step can be found in the function   `augment_image`.
+  Here a few augmented images along with the original ones:
 
-![alt text][image1]
+  ![alt text][image1]
 
 
 * Convert to grayscale
 
 
-My first approach was to use color images. During the training step, I observed that the training with grayscale images is a lot faster. Therefore I use the converted color images to grayscale.
+  My first approach was to use color images. During the training step, I observed that the training with grayscale images is a lot faster. Therefore I use the converted color images to grayscale.
 
 * Normalization
 
-Each grayscale image is normalized. The follow normalization is applied to each pixel: `(pixel - 128.) / 128`. 
-This normalization scales each pixel between [-1,1]. This normalization prevents a slow or unstable learning process.
+  Each grayscale image is normalized. The follow normalization is applied to each pixel: `(pixel - 128.) / 128`. 
+  This normalization scales each pixel between [-1,1]. This normalization prevents a slow or unstable learning process.
 
 
-Here are some images after the preprocessing.
+  Here are some images after the preprocessing.
 
-![alt text][image3]
+  ![alt text][image3]
 
 
 
