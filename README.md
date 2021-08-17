@@ -104,7 +104,7 @@ The preprocessing of the images include follow steps:
 #### 2. Describe what your final model architecture looks like including model type, layers, layer sizes, connectivity, etc.) Consider including a diagram and/or table describing the final model.
 
 
-The model is based off LeNet.
+The model is based on LeNet.
 My final model consisted of the following layers:
 
 | Layer         		|     Description	        					| 
