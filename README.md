@@ -43,8 +43,7 @@ You're reading it! and here is a link to my [project code](Traffic_Sign_Classifi
 
 #### 1. Provide a basic summary of the data set. In the code, the analysis should be done using python, numpy and/or pandas methods rather than hardcoding results manually.
 
-I used the pandas library to calculate summary statistics of the traffic
-signs data set:
+I used the numpy library to calculate summary statistics of the traffic signs data set:
 
 * The size of training set is 65598. The size of the origin training data is 34799. I augmented the training set by applying a rotation and brightness change of the origin training data. 
 * The size of the validation set is 4410
